@@ -1,0 +1,24 @@
+.pagetitle {
+    font-size: 3.25em;
+    margin: 0.5em 0;
+    text-align: center;
+    font-family: 'Futura';
+    font-weight: bold;
+    color: $text-color;
+        &-second {
+            color: $brand-secondary;
+        }
+        span {
+            color: $brand-secondary;
+        }
+}
+
+.title {
+    font-family: 'Futura';
+    margin:0;
+}
+
+.subtitle {
+    font-family: 'Georgia';
+    font-style: italic;
+}

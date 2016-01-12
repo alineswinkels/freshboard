@@ -1,0 +1,20 @@
+/*-----------------------------------------*\
+    Utilities - extends bootstrap
+
+    Utilities need !important to make sure they
+    always overrule the original styling.
+\*-----------------------------------------*/
+
+
+// spacing bottom aka signs
+.sign {
+    margin-bottom: $space!important;
+}
+
+    .sign-xs { // modifier
+        margin-bottom: $space/2!important;
+    }
+
+    .sign-lg { // modifier
+        margin-bottom: $space*2!important;
+    }

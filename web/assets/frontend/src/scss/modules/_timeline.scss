@@ -1,0 +1,42 @@
+.timeline-view {
+    margin-top: 2rem;
+
+    .icon {
+        position:absolute;
+        font-size: 1.3em;
+        cursor: pointer;
+        
+        span {
+            font-size: 0.8em !important;
+            opacity: 0;
+            margin-left: 5px;
+        }
+        &:hover span {
+            opacity: 1;
+        }
+        &-flag-checkered {
+            right: 0 !important;
+            top: 0;
+        }
+    }
+
+}
+
+.timeline {
+    height: 1em;
+    background-color: red;
+    margin-top: 3.5rem;
+    position: relative;
+    border-radius: 15px;
+}
+
+.timeline-filled {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    height: 1em;
+    width: 0;
+    position: absolute;
+    left: 0;
+    background-color: blue;
+    transition: 0.4s;
+}

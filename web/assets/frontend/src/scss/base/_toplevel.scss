@@ -1,0 +1,18 @@
+body {
+    // color: $brand-tertiary;
+}
+
+.dashboard-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 3em 0;
+        overflow: hidden;
+        background-color: $brand-tertiary;
+        &-personal {
+            background-image: url("../src/img/background.png");
+            background-size: 100%;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-color: $brand-primary;
+        }
+}
