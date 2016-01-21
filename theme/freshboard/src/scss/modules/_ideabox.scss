@@ -1,0 +1,40 @@
+.ideabox {
+    color: black;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 150px;
+    min-height: 150px;
+    &:hover {
+        color: black;
+    }
+}
+.icon-lightbulb {
+    position: absolute;
+    font-size: 2em;
+    padding:20px;
+    top:0;
+    right:0;
+    cursor: pointer;
+    &:hover {
+        transform: rotate(10deg);
+        transition: 0.2s;
+        font-size: 3em;
+    }
+}
+
+
+.idea-trigger {
+    position: absolute;
+    font-family: 'Arial';
+    width: 150px;
+    right: -150px;
+    text-align: right;
+    top:90px;
+    transition: 0.2s;
+}
+
+.icon-lightbulb:hover + .idea-trigger {
+    right:20px;
+}

@@ -1,0 +1,23 @@
+body {
+    // color: $brand-tertiary;
+    text-align: left;
+}
+
+.dashboard-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 3em 0;
+        overflow: hidden;
+        // background-color: $brand-tertiary;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3f3b49+0,706982+58,3f3b49+100 */
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3f3b49+0,5c566b+52,3f3b49+100 */
+        background: $brand-tertiary; /* Old browsers */
+        // background-size: 100%;
+        // background-position: top;
+        // background-repeat: no-repeat;
+        // background-image: url("../../images/background.png");
+        &-personal {
+            // background-image: url("../../images/background.jpg");
+            // background-color: $brand-primary;
+        }
+}

@@ -1,0 +1,16 @@
+<section class="dashboard-section section-projects js-items">
+    <div class="col-md-6 col-md-offset-3 item-section" data-target=".item-project">
+        <h1 class="pagetitle pagetitle-second">Projecten</h1>
+        {% if team.relation.projects %}
+            {% for project in team.related('projects') %}
+                <div class="item item-project project-item-{{ project.id }} col-md-3">
+                    <div class="item-view js-item" data-target=".item-open-project-{{ project.id }}">
+                        <img class="item-img" src="files/{{ project.image }}"/>
+                        <h3 class="title title-item">{{ project.name }}</h3>
+                    </div>
+                    {% include '_project.twig' %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,51 @@
+
+       <div class="col-md-10 col-md-offset-1 item-content">
+           <p class="subtitle subtitle-item">planning</p>
+           <div class="personal-projects">
+           <div class="now" data-offset="{{ team.startdate|TimelineNowCalculator(team.enddate) }}"></div>
+
+           {% for i in range(0, team.startdate|getWeeks(team.enddate)) %}
+                <div class="week" data-offset="{{ 100 / team.startdate|getWeeks(team.enddate) * i }}%">{{ i|getWeekDate(team.startdate) }}</div>
+           {% endfor %}
+
+           {% if intern.relation.projects %}
+               {% for project in intern.related('projects') %}
+                   {% if project.relation.fases %}
+
+                           <div class="personal-project-item col-md-12">
+                               <div class="item item-small col-md-1">
+                                   <h3 class="title title-item title-timeline">{{ project.name }}</h3>
+                               </div>
+                               <div class="col-md-11 timeline personal-timeline">
+
+                                       <div class="timeline-filled" data-target=".project-{{ project.id }}" data-value="{{ project.startdate|TimelineDurationCalculator(project.enddate, team.startdate, team.enddate) }}" data-offset="{{ project.startdate|TimelinePositionCalculator(project.enddate, team.startdate, team.enddate) }}"><p class="date-details date-details-project project-{{ project.id }}"> {{ project.startdate|date("d/m/Y") }} - {{ project.enddate|date("d/m/Y")}}</p>
+                                       </div>
+                                       {% for fase in project.related('fases') %}
+                                            <div class="timeline-filled timeline-filled-fase" data-target=".fase-{{ fase.id }}" data-value="{{ fase.startdate|TimelineDurationCalculator(fase.enddate, team.startdate, team.enddate) }}" data-offset="{{ fase.startdate|TimelinePositionCalculator(fase.enddate, team.startdate, team.enddate) }}"><p class="date-details date-details-fase fase-{{ fase.id }}">{{ fase.startdate|date("d/m/Y") }} </br><span>{{ fase.name }}<span></p></div>
+                                       {% endfor %}
+
+                                       <!-- {% for fase in project.related('fases') if fase.project_or_school == 'school' %}
+                                       <div class="timeline-filled timeline-filled-fase school" data-target=".fase-{{ fase.id }}" data-value="{{ fase.startdate|TimelineDurationCalculator(fase.enddate, team.startdate, team.enddate) }}" data-offset="{{ fase.startdate|TimelinePositionCalculator(fase.enddate, team.startdate, team.enddate) }}"><p class="date-details date-details-fase fase-{{ fase.id }}">{{ fase.startdate|date("d/m/Y") }} </br><span>{{ fase.name }}<span></p></div>
+                                       {% endfor %} -->
+                                </div>
+                           </div>
+
+                      {% endif %}
+               {% endfor %}
+           {% endif %}
+           {% if intern.relation.schools %}
+                <div class="personal-project-item col-md-12">
+                    <div class="item item-small col-md-1">
+                        <h3 class="title title-item title-timeline">{{ intern.firstname }} school</h3>
+                    </div>
+                    <div class="col-md-11 timeline personal-timeline">
+
+                            {% for school in intern.related('schools') %}
+                                 <div class="timeline-filled timeline-filled-school" data-target=".school-{{ school.id }}" data-value="{{ school.startdate|TimelineDurationCalculator(school.enddate, team.startdate, team.enddate) }}" data-offset="{{ school.startdate|TimelinePositionCalculator(school.enddate, team.startdate, team.enddate) }}"><p class="date-details date-details-school school-{{ school.id }}">{{ school.startdate|date("d/m/Y") }} </br><span>{{ school.name }}<span></p></div>
+                            {% endfor %}
+
+                     </div>
+                </div>
+           {% endif %}
+            </div>
+        </div>

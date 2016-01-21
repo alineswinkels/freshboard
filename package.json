@@ -1,12 +1,18 @@
 {
-  "name": "fh-project",
+  "name": "Freshboard",
   "private": true,
-  "devDependencies": {
-    "gulp": "~3.9.0"
-  },
   "dependencies": {
-    "lodash": "~3.10.0",
-    "fh-gulp-task": "git+ssh://git@github.com:freshheads/gulp-task#v0.2.4",
-    "webpack": "^1.10.5"
+    "bootstrap-sass": "^3.3.6",
+    "jquery": "^2.2.0",
+    "velocity-animate": "^1.2.3"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.1.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.4.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.10"
   }
 }

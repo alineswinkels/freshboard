@@ -1,0 +1,31 @@
+    <div class="item-open item-open-personal-{{ intern.id }} js-info-block" data-target="personal-item-{{ intern.id }}">
+        <div class="col-md-8 col-md-offset-2">
+            <a class="js-close close" data-target=".item-open-personal-{{ intern.id }}"><i class="icon icon-cancel"></i></a>
+
+                <h3 class="title title-item">{{ intern.firstname }} {{ intern.lastname }}</h3>
+                <p class="subtitle subtitle-item">{{ intern.function }}</p>
+        </div>
+        <div class="col-md-8 col-md-offset-2 item-content">
+                <div class="row">
+                    <dl class="list maki skills col-md-3 col-md-offset-3">
+                        <dt class="toggle js-list-title">skills</dt>
+                            {% if intern.relation.skills %}
+                                {% for skill in intern.related('skills') %}
+                                    <dd><span class="list-item">{{ skill.name }}</span></dd>
+                                {% endfor %}
+                            {% endif %}
+                    </dl>
+                    <dl class="list maki goals col-md-3">
+                        <dt class="toggle js-list-title"><i class="icon icon-target-1"></i> goals</dt>
+                            {% if intern.relation.goals %}
+                                {% for goal in intern.related('goals') %}
+                                    <dd><span class="list-item">{{ goal.name }}</span></dd>
+                                {% endfor %}
+                            {% endif %}
+                    </dl>
+
+                </div>
+        </div>
+
+        {% include '_personal-projects.twig' %}
+    </div>

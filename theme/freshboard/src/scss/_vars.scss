@@ -1,0 +1,61 @@
+/**
+ * Paths
+ */
+
+// $base-path:                        '../' !default;
+// $font-path:                        $base-path + 'fonts/' !default;
+// $image-path:                       $base-path + 'images/'!default;
+
+/**
+ * Brand
+ */
+
+$text-color:                        #000;
+$text-color-secondary:              #000;
+// $brand-primary:                     #1da0d5;
+$brand-primary:                     #37ac66;
+// $brand-secondary:                   #0f2d37;
+$brand-secondary:                   #eeeeee;
+$brand-tertiary:                    #fff;
+$brand-quaternary:                  #247042;
+// $item-color:                        #8e9095;
+$item-color:                        #fff;
+// $link-color:                        #8e9095;
+$link-color:                        #fff;
+$line-color:                        rgba(0,0,0,0.5);
+$after-color:                       #bbe3f3;
+$transparent:                       rgba(0,0,0,0.2);
+
+/**
+ * Grid
+ */
+
+$grid-gutter-width:                 40px;
+
+/**
+ * Spaces
+ */
+//
+$space:                             20px !default;
+
+/*
+ * Typography
+ */
+
+$font-family-primary:               'Futura', 'sans-serif';
+$font-family-secondary:             'Georgia', 'sans-serif';
+$font-family-tertiary:              'Arial', 'sans-serif';
+//
+// $font-size-small:                   12px !default;
+// $font-size-base:                    16px !default;
+// $line-height-base:                  2 !default;
+// $font-family-sans-serif:            $font-family-tertiary, sans-serif !default;
+// $font-family-brand:                 $font-family-primary, $font-family-sans-serif;
+//
+// $font-size-h1:                      32px !default;
+// $font-size-h2:                      24px !default;
+// $font-size-h3:                      20px !default;
+//
+// $headings-font-family:              $font-family-brand !default;
+// $headings-font-weight:              normal !default;
+// $headings-line-height:              1.25 !default;

@@ -1,0 +1,161 @@
+.timeline-view {
+    margin-top: 6rem;
+
+    // .icon {
+    //     position:absolute;
+    //     font-size: 1.3em;
+    //     cursor: pointer;
+    //
+    //     span {
+    //         font-size: 0.8em !important;
+    //         opacity: 0;
+    //         margin-left: 5px;
+    //     }
+    //     &:hover span {
+    //         opacity: 1;
+    //     }
+    //     &-flag-checkered {
+    //         left: auto !important;
+    //         right: 0 !important;
+    //         top: 0;
+    //     }
+    // }
+
+}
+
+.timeline {
+    height: 1em;
+    background-color: $transparent;
+    position: relative;
+    border-radius: 15px;
+
+    li{
+        list-style-type: none;
+        height:1em;
+    }
+}
+
+.timeline-filled {
+    border-radius: 15px;
+    max-width: 100% !important;
+    height: 1em;
+    width: 0;
+    position: absolute;
+    left: 0;
+    background-color: $brand-primary;
+    transition: 0.4s;
+
+
+
+        &-fase {
+            background-color: $brand-quaternary !important;
+        }
+        &-school {
+            background-color: red;
+        }
+
+}
+
+.personal-projects {
+    overflow: hidden;
+    margin-top: 2em;
+    position: relative;
+    padding: 2em 0;
+
+    .personal-timeline {
+            height: 1em;
+            margin: 1em 0;
+            background: transparent;
+            cursor: pointer;
+
+        li {
+            height:0;
+        }
+
+        .timeline-filled {
+            position: absolute;
+        }
+
+    }
+}
+
+.personal-project-item {
+    width: 100%;
+    float: left;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    &:last-child {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+.title-timeline {
+    margin-top: 1em !important;
+    text-align: left !important;
+}
+
+.now {
+    width: 1px;
+    background-color:black;
+    height: 100%;
+    position: absolute;
+    overflow: visible;
+    top: 0;
+    &:after {
+        content:"vandaag";
+        position: absolute;
+        top: 0;
+        font-family: $font-family-primary;
+        left: 0.5em;
+    }
+}
+
+.date-details {
+    display: none;
+    background: white;
+    position: absolute;
+    bottom:1em;
+    padding: 0.5em 1em;
+    border: 1px solid rgba(0,0,0,0.1);
+    line-height: calc(1em - 2px);
+    span {
+        font-family: $font-family-secondary;
+        font-style: italic;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: white;
+        bottom: -5px;
+        // border-right: 1px solid rgba(0,0,0,0.1);
+        // border-bottom: 1px solid rgba(0,0,0,0.1);
+        left: 10px;
+        transform: rotate(45deg);
+        font-family: $font-family-primary;
+        letter-spacing: 2em;
+    }
+    &-project {
+        background-color: $brand-primary;
+        color: white;
+        &:after {
+            background-color: $brand-primary;
+        }
+    }
+    &-fase {
+        background-color: $brand-quaternary;
+        color: white;
+        &:after {
+            background-color: $brand-quaternary;
+        }
+    }
+    &-school {
+        background-color: red;
+        color: white;
+        &:after {
+            background-color: red;
+        }
+    }
+
+}

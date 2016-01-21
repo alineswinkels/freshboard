@@ -1,0 +1,50 @@
+{# {% set currentDuration = project.datecreated|projectProgress(end_date) %}
+
+{{ dump(currentDuration)}} #}
+
+<div class="item-open item-open-project-{{ project.id }} js-info-block" data-target="project-item-{{ project.id }}">
+    <div class="col-md-8 col-md-offset-2">
+        <a class="js-close close" data-target=".item-open-project-{{ project.id }}"><i class="icon icon-cancel"></i></a>
+
+            <h3 class="title title-item">{{ project.name }}</h3>
+            <p class="subtitle subtitle-item">{{ project.category }}</p>
+            <div class="row item-content">
+
+                <div class="col-md-12">
+                    {% if project.relation.interns %}
+                        {% for intern in project.related('interns') %}
+
+                            <div class="item item-small col-md-2">
+                                <img class="item-img item-link" data-target="personal-item-{{ intern.id }}" src="files/{{ intern.image }}"/>
+                                <h3 class="subtitle subtitle-small">{{ intern.function }}</h3>
+                            </div>
+
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-12">
+                    <h4>opdrachtomschrijving</h4>
+                    <p class="item-description">
+                        {{ project.description }}
+                    </p>
+                </div>
+                <div class="col-md-12 timeline-view">
+                    <div class="timeline">
+                        <div class="timeline-filled" data-value="{{ project.startdate|ProjectProgressCalculator(project.enddate) }}"></div>
+
+                    </div>
+                    <ul>
+                    {% if project.relation.fases %}
+                        {% for fase in project.related('fases') %}
+
+                            <li><div class="timeline-filled timeline-filled-fase" data-value="{{ fase.startdate|TimelineDurationCalculator(fase.enddate, project.startdate, project.enddate) }}" data-offset="{{ fase.startdate|TimelinePositionCalculator(fase.enddate, project.startdate, project.enddate) }}"></div></li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+
+                </div>
+            </div>
+
+    </div>
+</div>

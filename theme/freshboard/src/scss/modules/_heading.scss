@@ -1,0 +1,35 @@
+.pagetitle {
+    font-size: 3.25em;
+    margin: 0.5em 0;
+    text-align: center;
+    font-family: 'Futura';
+    font-weight: bold;
+    color: $text-color;
+}
+
+.title {
+    font-family: 'Futura';
+    margin:0;
+    text-align: center;
+    &-item {
+        margin-top: 1em;
+        .item-open & {
+            margin-top: 0;
+            // text-align: left;
+        }
+        .item-small & {
+            font-size: 1em;
+            text-align: center;
+        }
+    }
+}
+
+.subtitle {
+    font-family: 'Georgia';
+    font-style: italic;
+    text-align: center;
+        .item-small & {
+            font-size: 1em;
+            text-align: center;
+        }
+}

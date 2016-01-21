@@ -1,0 +1,278 @@
+# This file defines the contenttypes on the website. See the documentation for
+# details: http://docs.bolt.cm/content#defining-contenttypes
+
+# Pages can be used for the more 'static' pages on your site. Things like
+# 'about us', 'contact' or a 'disclaimer'. This content-type has a 'templateselect'
+# field, which allows you to override the record_template setting for an
+# individual page.
+# The taxonomy for this contenttype is defined as 'chapters', which is a so-called
+# "grouping taxonomy". This way you can easily group sets of pages that logically
+# belong together. If your site has a 'services' section, in which you'd like to
+# list the different types of services a company provides, you can group these
+# together.
+
+teams:
+    name: Teams
+    singular_name: Team
+    fields:
+        name:
+            type: text
+            pattern: "^.{1,12}$"
+        email:
+            type: text
+            pattern: email
+        slug:
+            type: slug
+            uses: name
+        is_active:
+            type: text
+        startdate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+        enddate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+    default_status: published
+
+interns:
+    name: Interns
+    singular_name: Intern
+    fields:
+        firstname:
+            type: text
+        lastname:
+            type: text
+        slug:
+            type: slug
+            uses: firstname
+        image:
+            type: image
+        function:
+            type: text
+    relations:
+        teams:
+            multiple: false
+            order: name
+            label: Select 1 team
+    show_on_dashboard: true
+    default_status: published
+
+projects:
+    name: Projects
+    singular_name: Project
+    fields:
+        name:
+            type: text
+        category:
+            type: text
+        # project_or_school:
+        #     type: select
+        #     values: [ project, school ]
+        slug:
+            type: slug
+            uses: name
+        description:
+            type: text
+            class: large
+        startdate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+        enddate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+        image:
+            type: image
+    relations:
+        interns:
+            multiple: true
+            order: firstname
+            label: Select interns
+        teams:
+            multiple: false
+            label: Select team
+    default_status: published
+
+fases:
+    name: Fases
+    singular_name: Fase
+    fields:
+        name:
+            type: text
+        # project_or_school:
+        #     type: select
+        #     values: [ project, school ]
+        startdate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+        enddate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+    default_status: published
+    relations:
+        projects:
+            multiple: false
+            order: name
+            label: Select project
+        interns:
+            multiple: true
+            order: firstname
+            label: Select intern(s)
+
+skills:
+    name: Skills
+    singular_name: Skill
+    fields:
+        name:
+            type: text
+    default_status: published
+    relations:
+        interns:
+            multiple: true
+            order: firstname
+            label: Select intern(s)
+
+goals:
+    name: Goals
+    singular_name: Goal
+    fields:
+        name:
+            type: text
+    default_status: published
+    relations:
+        interns:
+            multiple: true
+            order: firstname
+            label: Select intern(s)
+
+schools:
+    name: Schools
+    singular_name: School
+    fields:
+        name:
+            type: text
+        startdate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+        enddate:
+            type: datetime
+            options:
+                datepicker:
+                    changeMonth: true
+                    changeYear: true
+    relations:
+        interns:
+            multiple: false
+            order: firstname
+            label: Select intern
+    default_status: published
+
+
+# Entries can be used for things like 'news' or 'blogpostings'. They have a 'teaser',
+# which can be used for a short blurb on listing-pages, allowing visitors to
+# click-through to the rest of the entry. It also has fields for an image and an
+# optional video.
+# A relation is defined to the pages contenttype. This way you can refer to a page
+# from your news-item.
+# This contenttype defines 'categories' and 'tags' as taxonomies, allowing the
+# editor to use both to categorize a specific entry.
+# The 'sort' is set to '-datepublish', which means that newer entries will be
+# shown above older entries.
+
+# Using YAML repeated nodes
+#
+# YAML allows the defining of "repeated nodes". These allow you to define a 'node'
+# with a 'key: &name' and referenced later with '<<: *name'
+#
+# Bolt allows you to define this with the special entry of '__nodes:' that itself
+# won't create a Contenttype, but will allow you to use it in actual contenttypes
+# to prevent repeating yourself.
+#
+# To achieve this, first create a key '__nodes:'
+#__nodes:
+#    field_defaults: &field_defaults
+#        title:
+#            type: text
+#            class: large
+#            group: main
+#        slug:
+#            type: slug
+#            uses: title
+#    template_defaults: &template_defaults
+#        template:
+#            type: templateselect
+#            filter: '*.twig'
+#            group: meta
+#
+# Then, as an example, you could create a Contenttype with default fields, with
+# an additional 'image' field.
+#
+#contenttype_abc:
+#    name: Contenttype Abc
+#    fields:
+#        <<: *field_defaults
+#        image:
+#            type: image
+#            attrib: title
+#            extensions: [ gif, jpg, png ]
+#        <<: *template_defaults
+#    taxonomy: [ chapters ]
+#    recordsperpage: 10
+#
+# Alternatively, or additionally, you then can thencreate a Contenttype with
+# default fields, and a 'select' field, and a different 'templateselect' option.
+#
+#contenttype_xyz:
+#    name: Contenttype Xyz
+#    fields:
+#        <<: *field_defaults
+#        selectfield:
+#            type: select
+#            values: [ none, foo, bar ]
+#        template:
+#            type: templateselect
+#            filter: '*_xyz.twig'
+#    taxonomy: [ tags ]
+#    recordsperpage: 20
+
+# Possible field types:
+#
+# text - varchar(256) - input type text.
+# integer - integer - Input field for integer numbers.
+# float - double - Input field for floating numbers, stored as 'Double'.
+# geolocation - text (65kb) - Input field for geolocation. Enter an address, and the location is geocoded to latitude/longitude coordinates
+# imagelist - text (65kb) - Input type for imagelists. Add multiple images with a description. Useful for image sliders, galleries, etcetera.
+# image - varchar(256) - image select/upload widget, stored as filename.
+# file - varchar(256) - file select/upload widget, stored as filename.
+# filelist - text (65kb) - Input type for a list of files. Including a description.
+# video - varchar(256) - Video embed widget, stored as filename.
+# html - text (65kb) - wysiwyg element.
+# textarea - varchar(32768) - Simple, plain < textarea > field.
+# markdown - varchar(32768) - Simple, plain < textarea > field, which is parsed as Markdown text.
+# datetime - datetime - date and time selector widget.
+# date - datetime - date selector widget.
+# select - varchar(256) - select with predefined values
+# templateselect - varchar(256) - select with template filenames
+# checkbox - integer - checkbox-field which is 1 (checked) or 0 (unchecked)
+
+# number (deprecated) - input type decimal(18,9), useful for storing number that need to be sortable

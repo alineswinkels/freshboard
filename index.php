@@ -1,24 +1,52 @@
-<!DOCTYPE html>
-    <!--[if lt IE 8]>     <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="nl"> <![endif]-->
-    <!--[if IE 8]>        <html class="no-js ie8 lt-ie10 lt-ie9" lang="nl"> <![endif]-->
-    <!--[if IE 9]>        <html class="no-js ie9 lt-ie10" lang="nl"> <![endif]-->
-    <!--[if gt IE 9]><!--><html class="no-js" lang="nl"><!--<![endif]-->
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="web/assets/frontend/icon-font/css/fontello.css" />
-    <link rel="stylesheet" href="web/assets/frontend/build/app.css" />
-</head>
-<body>
-    <script src="web/assets/frontend/build/app.js"></script>
-    <div class="ideabox">
-        <i class="icon icon-lightbulb"></i>
-        <div class="idea-trigger"><p>goed idee voor de proeftuin?</p></div>
-    </div>
-    <?php
-        include('proeftuin.php');
-        include('projects.php');
-    ?>
-</body>
-</html>
+<?php
+/**
+ * Bolt entry script
+ *
+ * Here we'll require in the first stage load script, which handles all the
+ * tasks needed to return the app.  Once we get the app, we simply tell it
+ * to run, building a beautiful web page for you and other visitors.
+ *
+ * We get things started by ensuring the PHP version we're running on
+ * is supported by the app.  We'll display a friendly error page if not.
+ *
+ * Next, we'll check if the script is being run with PHP's built in web
+ * server, and make sure static assets are handled gracefully.
+ *
+ */
+
+/**
+ * Version must be greater than 5.3.3.
+ *
+ * Note, we use `dirname(__FILE__)` instead of `__DIR__`. The latter was introduced "only" in
+ * PHP 5.3, and we need to be able to show the notice to the poor souls who are still on PHP 5.2.
+ *
+ * @see: https://github.com/bolt/bolt/issues/1531
+ * @see: https://github.com/bolt/bolt/issues/3371
+ */
+if (version_compare(PHP_VERSION, '5.3.3', '<')) {
+    require dirname(__FILE__) . '/app/legacy.php';
+    return false;
+}
+
+/**
+ * Return false if the requested file is available on the filesystem.
+ * @see: http://silex.sensiolabs.org/doc/web_servers.html#php-5-4
+ */
+if (php_sapi_name() == 'cli-server') {
+    $filename = __DIR__ . preg_replace('#(\?.*)$#', '', $_SERVER['REQUEST_URI']);
+
+    if (is_file($filename)) {
+        return false;
+    }
+}
+
+/**
+ * @var \Bolt\Application $app
+ */
+$app = require_once __DIR__ . '/app/bootstrap.php';
+
+if ($app) {
+    $app->run();
+} else {
+    return false;
+}

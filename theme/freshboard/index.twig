@@ -1,0 +1,19 @@
+{% include '_header.twig' %}
+
+<!-- Main Page Content -->
+{% setcontent teams = 'teams' %}
+
+{% for team in teams if team.is_active == 'active' %}
+
+    {% include '_ideabox.twig' %}
+
+    <section class="dashboard-section dashboard-section-personal js-items">
+        <h1 class="pagetitle">{{ team.name }}</span></h1>
+    {% include '_team.twig' %}
+    </section>
+
+    {% include '_projects.twig' %}
+{% endfor %}
+
+<!-- End Main Content -->
+{% include '_footer.twig' %}

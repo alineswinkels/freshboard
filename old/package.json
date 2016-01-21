@@ -1,0 +1,12 @@
+{
+  "name": "fh-project",
+  "private": true,
+  "devDependencies": {
+    "gulp": "~3.9.0"
+  },
+  "dependencies": {
+    "lodash": "~3.10.0",
+    "fh-gulp-task": "git+ssh://git@github.com:freshheads/gulp-task#v0.2.4",
+    "webpack": "^1.10.5"
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "bolt/bolt-extension-starter",
+    "description": "Calculate percentage progress of a project",
+    "type": "bolt-extension",
+    "keywords" : [ "foo", "bar" ],
+    "require": {
+        "bolt/bolt": ">=2.0.0,<3.0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aline",
+            "email": "you@example.com"
+        }
+    ],
+	"minimum-stability" : "dev",
+	"prefer-stable" : true,
+    "autoload": {
+        "files": [
+            "init.php"
+        ],
+        "psr-4": {
+            "Bolt\\Extension\\FH\\ProjectProgressCalculator\\": "",
+            "Bolt\\Extension\\FH\\ProjectProgressCalculator\\Tests\\": "tests"
+        }
+    },
+
+    "extra": {
+        "bolt-assets": "assets"
+    }
+}
