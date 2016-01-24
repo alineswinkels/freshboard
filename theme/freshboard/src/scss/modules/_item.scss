@@ -21,10 +21,7 @@
         }
     }
 
-    &:hover {
-        opacity: 1 !important;
-        transition: 0.2s;
-    }
+
 }
 
 .item-view {
@@ -48,6 +45,18 @@
         content: '';
         width: 40px;
         height: 40px;
+    }
+
+    &:hover {
+        opacity: 1 !important;
+        transition: 0.2s;
+
+        img {
+            // width: 72.5%;
+            transition: 0.2s;
+            transform: scale(1.05);
+            // margin: 0 0 1em 13.75%;
+        }
     }
 }
 

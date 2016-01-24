@@ -1650,6 +1650,12 @@ input[type="button"].btn-block {
 body {
   text-align: left; }
 
+.logo {
+  overflow: hidden;
+  position: relative; }
+  .logo svg {
+    width: 100%; }
+
 .dashboard-section {
   width: 100%;
   min-height: 100vh;
@@ -1738,9 +1744,6 @@ body {
     .item-small .subtitle {
       font-size: 1em;
       margin: 0; }
-  .item:hover {
-    opacity: 1 !important;
-    transition: 0.2s; }
 
 .item-view {
   position: relative;
@@ -1762,6 +1765,14 @@ body {
     content: '';
     width: 40px;
     height: 40px; }
+  .item-view:hover {
+    opacity: 1 !important;
+    transition: 0.2s; }
+    .item-view:hover img {
+      transition: 0.2s;
+      -webkit-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+              transform: scale(1.05); }
 
 .item-img {
   border-radius: 50%;
@@ -1929,7 +1940,6 @@ body {
 
 /* UI */
 .toggle {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
   border-radius: 3px;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -1943,7 +1953,7 @@ body {
 /* Individual styles */
 .maki dt, .maki dd {
   background: #eeeeee;
-  border: 1px solid rgba(0, 0, 0, 0.2); }
+  border: 1px solid rgba(0, 0, 0, 0.1); }
 
 .goals {
   -webkit-transform: perspective(1200px) rotateY(40deg) !important;
@@ -1966,30 +1976,46 @@ body {
 
 .timeline {
   height: 1em;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(106, 171, 201, 0.1);
   position: relative;
   border-radius: 15px; }
   .timeline li {
-    list-style-type: none;
+    list-style: none;
     height: 1em; }
 
 .timeline-filled {
-  border-radius: 15px;
+  border-radius: 10px;
   max-width: 100% !important;
   height: 1em;
   width: 0;
   position: absolute;
   left: 0;
+  top: 0.25em;
   background-color: #37ac66;
-  transition: 0.4s; }
+  transition: 0.4s;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+  .timeline-filled:hover {
+    transition: 0.05s;
+    border-color: rgba(0, 0, 0, 0.5); }
+  .timeline-filled:active {
+    transition: 0.4s;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    background-color: #1c5633; }
+  .timeline-filled-project {
+    height: 1.5em;
+    top: 0; }
   .timeline-filled-fase {
     background-color: #247042 !important; }
+    .timeline-filled-fase:active {
+      background-color: black !important; }
   .timeline-filled-school {
-    background-color: red; }
+    background-color: blue; }
+
+.personal-projects-wrap {
+  overflow: hidden;
+  position: relative; }
 
 .personal-projects {
-  overflow: hidden;
-  margin-top: 2em;
   position: relative;
   padding: 2em 0; }
   .personal-projects .personal-timeline {
@@ -1998,9 +2024,8 @@ body {
     background: transparent;
     cursor: pointer; }
     .personal-projects .personal-timeline li {
-      height: 0; }
-    .personal-projects .personal-timeline .timeline-filled {
-      position: absolute; }
+      height: 0;
+      list-style: none; }
 
 .personal-project-item {
   width: 100%;
@@ -2013,6 +2038,32 @@ body {
   margin-top: 1em !important;
   text-align: left !important; }
 
+.project-timeline ul {
+  margin: 0;
+  padding: 0;
+  position: relative; }
+  .project-timeline ul li {
+    height: 1em;
+    list-style-type: none;
+    position: relative;
+    width: 100%;
+    overflow: hidden; }
+
+.week {
+  position: absolute;
+  top: 0;
+  font-size: 0.6em; }
+  .week span {
+    margin-left: 0.5em; }
+  .week:after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 2.5em; }
+
 .now {
   width: 1px;
   background-color: black;
@@ -2020,14 +2071,8 @@ body {
   position: absolute;
   overflow: visible;
   top: 0; }
-  .now:after {
-    content: "vandaag";
-    position: absolute;
-    top: 0;
-    font-family: "Futura", "sans-serif";
-    left: 0.5em; }
 
-.date-details {
+.details {
   display: none;
   background: white;
   position: absolute;
@@ -2035,34 +2080,59 @@ body {
   padding: 0.5em 1em;
   border: 1px solid rgba(0, 0, 0, 0.1);
   line-height: calc(1em - 2px); }
-  .date-details span {
+  .details span {
     font-family: "Georgia", "sans-serif";
     font-style: italic; }
-  .date-details:after {
+  .details-description {
+    display: none;
+    background: white;
+    position: absolute;
+    top: 1.5em;
+    padding: 0.5em 1em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: calc(1em - 2px); }
+    .details-description:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      top: -5px;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      left: 2px;
+      -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+      font-family: "Futura", "sans-serif";
+      letter-spacing: 2em; }
+  .details:after {
     content: '';
     position: absolute;
     width: 10px;
     height: 10px;
     background: white;
     bottom: -5px;
-    left: 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    left: 2px;
     -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
             transform: rotate(45deg);
     font-family: "Futura", "sans-serif";
     letter-spacing: 2em; }
-  .date-details-project {
+  .details-project {
     background-color: #37ac66;
     color: white; }
-    .date-details-project:after {
+    .details-project:after {
       background-color: #37ac66; }
-  .date-details-fase {
+  .details-fase {
     background-color: #247042;
     color: white; }
-    .date-details-fase:after {
+    .details-fase:after {
       background-color: #247042; }
-  .date-details-school {
+  .details-school {
     background-color: red;
     color: white; }
-    .date-details-school:after {
+    .details-school:after {
       background-color: red; }

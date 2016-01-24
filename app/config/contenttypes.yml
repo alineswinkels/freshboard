@@ -78,8 +78,8 @@ projects:
             type: slug
             uses: name
         description:
-            type: text
-            class: large
+            type: textarea
+            prefix: "<p>Add a description, if you want.</p>"
         startdate:
             type: datetime
             options:
@@ -167,6 +167,8 @@ schools:
     singular_name: School
     fields:
         name:
+            type: text
+        description:
             type: text
         startdate:
             type: datetime

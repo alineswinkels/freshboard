@@ -3,8 +3,8 @@
         <h1 class="pagetitle pagetitle-second">Projecten</h1>
         {% if team.relation.projects %}
             {% for project in team.related('projects') %}
-                <div class="item item-project project-item-{{ project.id }} col-md-3">
-                    <div class="item-view js-item" data-target=".item-open-project-{{ project.id }}">
+                <div class="item item-project col-md-3">
+                    <div class="item-view js-item project-item-{{ project.id }}" data-target=".item-open-project-{{ project.id }}">
                         <img class="item-img" src="files/{{ project.image }}"/>
                         <h3 class="title title-item">{{ project.name }}</h3>
                     </div>

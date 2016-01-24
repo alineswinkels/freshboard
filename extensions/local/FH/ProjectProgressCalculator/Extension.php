@@ -33,17 +33,21 @@ class Extension extends BaseExtension
     {
         $internStart = strtotime($startdateTeam);
         $internEnd = strtotime($enddateTeam);
+        // $internEnd = $internEnd + 604800;
         $internDuration = $internEnd - $internStart;
 
         $weeks = floor($internDuration / 604800);
+        $weeks = number_format($weeks, 2 , '.' , '');
 
         return $weeks;
     }
 
     public function getWeekDate($week, $startdateTeam)
     {
-        $seconds = $week * 604800 + $startdateTeam;
-        $date = date('d-m-Y', strtotime($seconds));
+        $startdateTeam = strtotime($startdateTeam);
+        $internStart = $startdateTeam;
+        $seconds = ($week * 604800) + $internStart;
+        $date = date('d-m', $seconds);
 
         return $date;
     }
@@ -76,6 +80,7 @@ class Extension extends BaseExtension
         $internDuration = $internEnd - $internStart;
 
         $internCompletion = 100 / $internDuration * $now;
+        $internCompletion = number_format($internCompletion, 2 , '.' , '');
 
         return new \Twig_Markup($internCompletion, 'UTF-8');
     }
@@ -94,6 +99,7 @@ class Extension extends BaseExtension
         $projectDuration = $projectEnd - $projectStart;
 
         $projectStartPercentage = 100 / $internShipDuration * ($projectStart - $internStart);
+        $projectStartPercentage = number_format($projectStartPercentage, 2 , '.' , '');
 
         return new \Twig_Markup($projectStartPercentage, 'UTF-8');
     }
@@ -112,6 +118,7 @@ class Extension extends BaseExtension
         $projectDuration = $projectEnd - $projectStart;
 
         $projectDurationPercentage = 100 / $internShipDuration * $projectDuration;
+        $projectDurationPercentage = number_format($projectDurationPercentage, 2 , '.' , '');
 
         return new \Twig_Markup($projectDurationPercentage, 'UTF-8');
     }
@@ -132,49 +139,49 @@ class Extension extends BaseExtension
         return new \Twig_Markup($projectCompletion, 'UTF-8');
     }
 
-// calculate duration of fase
-    public function ProjectFaseCalculator($startdateFase, $enddateFase, $startdateProject, $enddateProject)
-    {
-        $projectStart = strtotime($startdateProject);
-        $projectEnd = strtotime($enddateProject);
-
-        $projectDuration = $projectEnd - $projectStart;
-
-        $faseStart = strtotime($startdateFase);
-        $faseEnd = strtotime($enddateFase);
-
-        $faseDuration = $faseEnd - $faseStart;
-
-        $faseDurationPercentage = 100 / $projectDuration * $faseDuration;
-
-        return new \Twig_Markup($faseDurationPercentage, 'UTF-8');
-        // // get total days of fase and project
-        // $faseDuration = $this->getDiff($startdateFase, $enddateFase);
-        // $projectDuration = $this->getDiff($startdateProject, $enddateProject);
-        //
-        //
-        // // get percentage of fase of project
-        // $percentageFase = (100 / $projectDuration) * $faseDuration;
-        //
-        // return new \Twig_Markup($percentageFase, 'UTF-8');
-    }
-
-// calculate position of fase
-    public function ProjectFasePositionCalculator($startdateFase, $enddateFase, $startdateProject, $enddateProject)
-    {
-        $projectStart = strtotime($startdateProject);
-        $projectEnd = strtotime($enddateProject);
-
-        $projectDuration = $projectEnd - $projectStart;
-
-        $faseStart = strtotime($startdateFase);
-        $faseEnd = strtotime($enddateFase);
-
-        $faseDuration = $faseEnd - $faseStart;
-
-        $faseStartPercentage = 100 / $projectDuration * ($faseStart - $projectStart);
-
-        return new \Twig_Markup($faseStartPercentage, 'UTF-8');
-
-    }
+// // calculate duration of fase
+//     public function ProjectFaseCalculator($startdateFase, $enddateFase, $startdateProject, $enddateProject)
+//     {
+//         $projectStart = strtotime($startdateProject);
+//         $projectEnd = strtotime($enddateProject);
+//
+//         $projectDuration = $projectEnd - $projectStart;
+//
+//         $faseStart = strtotime($startdateFase);
+//         $faseEnd = strtotime($enddateFase);
+//
+//         $faseDuration = $faseEnd - $faseStart;
+//
+//         $faseDurationPercentage = 100 / $projectDuration * $faseDuration;
+//
+//         return new \Twig_Markup($faseDurationPercentage, 'UTF-8');
+//         // // get total days of fase and project
+//         // $faseDuration = $this->getDiff($startdateFase, $enddateFase);
+//         // $projectDuration = $this->getDiff($startdateProject, $enddateProject);
+//         //
+//         //
+//         // // get percentage of fase of project
+//         // $percentageFase = (100 / $projectDuration) * $faseDuration;
+//         //
+//         // return new \Twig_Markup($percentageFase, 'UTF-8');
+//     }
+//
+// // calculate position of fase
+//     public function ProjectFasePositionCalculator($startdateFase, $enddateFase, $startdateProject, $enddateProject)
+//     {
+//         $projectStart = strtotime($startdateProject);
+//         $projectEnd = strtotime($enddateProject);
+//
+//         $projectDuration = $projectEnd - $projectStart;
+//
+//         $faseStart = strtotime($startdateFase);
+//         $faseEnd = strtotime($enddateFase);
+//
+//         $faseDuration = $faseEnd - $faseStart;
+//
+//         $faseStartPercentage = 100 / $projectDuration * ($faseStart - $projectStart);
+//
+//         return new \Twig_Markup($faseStartPercentage, 'UTF-8');
+//
+//     }
 }

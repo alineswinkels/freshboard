@@ -58,7 +58,7 @@
 
 	$(document).ready(function(){
 	    var $windowSize = $( window ).width();
-	    console.log($windowSize);
+	    // console.log($windowSize);
 
 	    $(".js-items").each(function() {
 	        var $el = $(this),
@@ -69,7 +69,7 @@
 	            var $toWrap = $itemSection.data("target");
 
 	            if ($(window).width() > 768) {
-	                console.log('bigger then 768');
+	                // console.log('bigger then 768');
 	            for(var i = 0, l = $items.length; i < l; i += 4) {
 	                    $($toWrap).slice(i, i+4).wrapAll('<div class="item-wrap"></div>');
 	                }
@@ -81,23 +81,30 @@
 	                    }
 
 
-	    if(!$items.length) {
-	        return;
-	    }
+	        if(!$items.length) {
+	            return;
+	        }
 
 	        $items.on( "click", function(e) {
 	            var $item = $(this),
 	                $infoBlock = $item.next(".js-info-block"),
 	                $itemData = $item.data();
 
-	                if ($infoBlock.css("display") == "none") {
-	                reset();
-	            };
+	                i
+	                var height = null;
 	                calculateHeight($itemData.target);
-	                if ($infoBlock.css("display") == "none") {
-	                openItem();
-	            };
+	                if ($infoBlock.css("display") == "block") {
+	                    reset();
+	                }
+	                else {
+	                    reset();
+	                    openItem();
+	                    placeTimestamps();
+	                }
+
+
 	                fillTimeline();
+
 
 	                // functions
 	                    function reset() {
@@ -107,25 +114,40 @@
 	                                duration: 50,
 	                                delay: 0
 	                            });
-	                        $items.parents(".item-wrap").css("margin-bottom","0");
-	                        $items.parents(".item-wrap").css("padding-bottom","0");
+	                        $items.parents(".item-wrap").css({
+	                            marginBottom: 0,
+	                            paddingBottom: 0
+	                        });
 	                        $(".timeline-filled").css('width','0');
-	                        $(".timeline-filled").css('left','0');
-	                        $(".now").css("left","0");
+	                        $(".now, .week, timeline-filled").css("left","0");
 	                        return;
 	                    };
-	                    function calculateHeight($a){
-	                        $height = $($a).height();
-	                        return $height;
-	                    };
-	                    function fillTimeline(){
-	                        var $timelinePosition = $(".now").data("offset") + "%";
-	                        $(".now").velocity({
-	                            left: $timelinePosition
-	                        }, { duration: 1500 }, { delay: 500 });
-	                        $( ".timeline-filled" ).each(function( index ) {
 
-	                            console.log($(this).data('value'));
+	                    function calculateHeight($el){
+	                        height = $($el).height();
+	                    };
+
+	                    function placeTimestamps(){
+	                        var timelinePosition = $(".now").data("offset") + "%";
+
+	                        $(".now").velocity({
+	                            left: timelinePosition
+	                        }, { duration: 1500 }, { delay: 500 });
+
+	                        $( ".week" ).each(function() {
+	                            var $el = $(this),
+	                                elData = $el.data(),
+	                                percentage = elData.offset + '%';
+
+	                            $el.velocity({
+	                                left: percentage
+	                            }, { duration: 100 }, { delay: 100 });
+
+	                        });
+	                    }
+
+	                    function fillTimeline(){
+	                        $( ".timeline-filled" ).each(function() {
 	                            var $percentage = $(this).data('value') + '%';
 	                            var $left = $(this).data('offset') + '%';
 	                                $(this).velocity({
@@ -137,20 +159,14 @@
 	                            return;
 	                        };
 
-	                    // function scrollTo($b){
-	                    //     $($b).velocity("scroll", {
-	                    //         offset: "-250px"
-	                    //     });
-	                    // };
-
 	                    function openItem(){
 	                        // check if not already opened
 	                        if ($infoBlock.css("display") == "none") {
 
 	                        $(".js-list-title").parent().makisu( 'open' );
 	                        //do something with height
-	                        $item.parents(".item-wrap").css("margin-bottom",$height);
-	                        $item.parents(".item-wrap").css("padding-bottom","8rem");
+	                        $item.parents(".item-wrap").css("margin-bottom", height);
+	                        $item.parents(".item-wrap").css("padding-bottom", "8rem");
 	                        // add active class
 	                        $items.css("opacity","0.6");
 	                        $item.css("opacity","1");
@@ -177,34 +193,40 @@
 	                    });
 
 
-
+	                    // function scrollTo($target){
+	                    //     $target.velocity("scroll", { duration: 750, offset: 250 })
+	                    //
+	                    //     $target.preventDefault();
+	                    //     return;
+	                    // });
 
 
 	                    e.preventDefault();
 	                    return;
 	            });
+
+	            $(".item-link").on("click", function() {
+	                var target = $(this).data("target");
+	                console.log(target);
+
+	                $(target).trigger("click");
+
+	                return;
+	            });
 	    });
 
-	    $(".item-link").on("click", function() {
-	        var $target = $(this).data("target");
-	        console.log($target);
 
-	        // not working
-	        $($target).trigger("click");
-
-	        return;
-	    });
 
 	    $(".timeline-filled").on("click", function() {
-	        var $dateDetails = $(this).data("target");
-	        console.log($dateDetails);
-	        showDate($dateDetails);
+	        var $details = $(this).data("target");
+	        // console.log($details);
+	        showDate($details);
 	    });
 
-	    function showDate($dateDetails){
-	        if( $($dateDetails).css("display") == "none"){
+	    function showDate($details){
+	        if( $($details).css("display") == "none"){
 	        resetDate();
-	        $(".timeline-filled").find($dateDetails).velocity("slideDown", {
+	        $(".timeline-filled").find($details).velocity("slideDown", {
 	            duration: 50,
 	            delay: 0
 	        });
@@ -217,7 +239,7 @@
 	    };
 
 	    function resetDate(){
-	        $(".date-details").velocity("slideUp", {
+	        $(".js-details").velocity("slideUp", {
 	            duration: 50,
 	            delay: 0
 	        });

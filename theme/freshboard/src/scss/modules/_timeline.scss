@@ -25,40 +25,69 @@
 
 .timeline {
     height: 1em;
-    background-color: $transparent;
+    background-color: $brand-primary-rgba;
     position: relative;
     border-radius: 15px;
 
     li{
-        list-style-type: none;
+        list-style: none;
         height:1em;
     }
 }
 
 .timeline-filled {
-    border-radius: 15px;
+    border-radius: 10px;
     max-width: 100% !important;
     height: 1em;
     width: 0;
     position: absolute;
     left: 0;
+    top: 0.25em;
     background-color: $brand-primary;
     transition: 0.4s;
+    border: 1px solid $transparent;
 
+    &:hover {
+        transition: 0.05s;
+        border-color: rgba(0,0,0,0.5);
 
+    }
+    &:active {
+        transition: 0.4s;
+        border: 3px solid rgba(0,0,0,0.5);
+        background-color: $brand-quaternary-dark;
+    }
 
+        &-project {
+            height:1.5em;
+            top:0;
+        }
         &-fase {
             background-color: $brand-quaternary !important;
+            &:active {
+                background-color: black !important;
+            }
+            // &:hover {
+            //     background-color: $brand-quaternary-dark !important;
+            // }
         }
         &-school {
-            background-color: red;
+            background-color: blue;
+            // &:hover {
+            //     background-color: $brand-primary-transparent;
+            // }
         }
 
 }
 
-.personal-projects {
+.personal-projects-wrap {
     overflow: hidden;
-    margin-top: 2em;
+    position: relative;
+}
+
+.personal-projects {
+    // overflow: hidden;
+    // margin-top: 2em;
     position: relative;
     padding: 2em 0;
 
@@ -70,10 +99,11 @@
 
         li {
             height:0;
+            list-style: none;
         }
 
         .timeline-filled {
-            position: absolute;
+            // top: 0.25em;
         }
 
     }
@@ -93,6 +123,39 @@
     text-align: left !important;
 }
 
+.project-timeline {
+    ul {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        li {
+            height: 1em;
+            list-style-type: none;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+}
+
+.week {
+    position: absolute;
+    top: 0;
+    font-size: 0.6em;
+    span {
+        margin-left:0.5em;
+    }
+    &:after {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 2.5em;
+    }
+}
+
 .now {
     width: 1px;
     background-color:black;
@@ -100,16 +163,16 @@
     position: absolute;
     overflow: visible;
     top: 0;
-    &:after {
-        content:"vandaag";
-        position: absolute;
-        top: 0;
-        font-family: $font-family-primary;
-        left: 0.5em;
-    }
+    // &:after {
+    //     content:"vandaag";
+    //     position: absolute;
+    //     top: 0;
+    //     font-family: $font-family-primary;
+    //     left: 0.5em;
+    // }
 }
 
-.date-details {
+.details {
     display: none;
     background: white;
     position: absolute;
@@ -121,6 +184,29 @@
         font-family: $font-family-secondary;
         font-style: italic;
     }
+    &-description{
+        display: none;
+        background: white;
+        position: absolute;
+        top:1.5em;
+        padding: 0.5em 1em;
+        border: 1px solid rgba(0,0,0,0.1);
+        line-height: calc(1em - 2px);
+        &:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            top: -5px;
+            border-left: 1px solid rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            left: 2px;
+            transform: rotate(45deg);
+            font-family: $font-family-primary;
+            letter-spacing: 2em;
+        }
+    }
 
     &:after {
         content: '';
@@ -129,9 +215,9 @@
         height: 10px;
         background: white;
         bottom: -5px;
-        // border-right: 1px solid rgba(0,0,0,0.1);
-        // border-bottom: 1px solid rgba(0,0,0,0.1);
-        left: 10px;
+        border-right: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        left: 2px;
         transform: rotate(45deg);
         font-family: $font-family-primary;
         letter-spacing: 2em;

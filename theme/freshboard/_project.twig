@@ -3,7 +3,7 @@
 {{ dump(currentDuration)}} #}
 
 <div class="item-open item-open-project-{{ project.id }} js-info-block" data-target="project-item-{{ project.id }}">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
         <a class="js-close close" data-target=".item-open-project-{{ project.id }}"><i class="icon icon-cancel"></i></a>
 
             <h3 class="title title-item">{{ project.name }}</h3>
@@ -15,8 +15,8 @@
                         {% for intern in project.related('interns') %}
 
                             <div class="item item-small col-md-2">
-                                <img class="item-img item-link" data-target="personal-item-{{ intern.id }}" src="files/{{ intern.image }}"/>
-                                <h3 class="subtitle subtitle-small">{{ intern.function }}</h3>
+                                <img class="item-img item-link" data-target=".personal-item-{{ intern.id }}" src="files/{{ intern.image }}"/>
+                                <!-- <h3 class="subtitle subtitle-small">{{ intern.function }}</h3> -->
                             </div>
 
                         {% endfor %}
@@ -34,7 +34,7 @@
                         <div class="timeline-filled" data-value="{{ project.startdate|ProjectProgressCalculator(project.enddate) }}"></div>
 
                     </div>
-                    <ul>
+                    <ul class="project-timeline">
                     {% if project.relation.fases %}
                         {% for fase in project.related('fases') %}
 

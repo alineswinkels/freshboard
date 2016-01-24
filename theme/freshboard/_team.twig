@@ -1,8 +1,8 @@
         <div class="col-md-6 col-md-offset-3 item-section" data-target=".item-team">
             {% if team.relation.interns %}
                 {% for intern in team.related('interns') %}
-                        <div class="item item-team personal-item-{{ intern.id }} col-md-3">
-                            <div class="item-view js-item" data-target=".item-open-personal-{{ intern.id }}">
+                        <div class="item item-team col-md-3">
+                            <div class="item-view js-item personal-item-{{ intern.id }}" data-target=".item-open-personal-{{ intern.id }}">
                                 <img class="item-img" src="files/{{ intern.image }}"/>
                                 <h3 class="title title-item">{{ intern.firstname }}</h3>
                             </div>

@@ -3,6 +3,14 @@ body {
     text-align: left;
 }
 
+.logo {
+    overflow: hidden;
+    position: relative;
+    svg {
+        width: 100%;
+    }
+}
+
 .dashboard-section {
         width: 100%;
         min-height: 100vh;
