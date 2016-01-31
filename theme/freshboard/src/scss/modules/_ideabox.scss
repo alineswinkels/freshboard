@@ -6,6 +6,8 @@
     top: 0;
     min-width: 150px;
     min-height: 150px;
+    z-index: 1;
+    
     &:hover {
         color: black;
     }

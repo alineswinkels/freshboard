@@ -1,10 +1,15 @@
 
-       <div class="col-md-10 col-md-offset-1 item-content">
-           <p class="subtitle subtitle-item">planning</p>
-
+       <div class="col-md-10 col-md-offset-1 personal-timeline">
+           <p class="subtitle subtitle-item">{{ intern.firstname }}'s planning</p>
+           <p class="legenda">
+               <span class="legenda-project">project</span></p>
+            <p class="legenda">
+                <span class="legenda-fase">betrokken fase</span>
+            </p>
+           <div class="now" data-offset="{{ team.startdate|TimelineNowCalculator(team.enddate) }}"></div>
 
            <div class="personal-projects-wrap">
-                    <div class="now" data-offset="{{ team.startdate|TimelineNowCalculator(team.enddate) }}"></div>
+
 
                    {% for i in range(0, team.startdate|getWeeks(team.enddate)) %}
                         <div class="week" data-offset="{{ 100 / team.startdate|getWeeks(team.enddate) * i }}"><span>{{ i|getWeekDate(team.startdate) }}</span></div>
@@ -15,8 +20,9 @@
 
                {% for project in intern.related('projects') %}
 
-                           <div class="personal-project-item" data-target=".project-item-{{ project.id }}">
-                               <div class="item item-small item-link">
+                           <div class="personal-project-item">
+                               <div class="item item-small item-link" data-target=".project-item-{{ project.id }}">
+                                   <img class="item-img item-img-timeline" src="files/{{ project.image }}"/>
                                    <h3 class="title title-item title-timeline">{{ project.name }}</h3>
                                </div>
                                <div class="timeline personal-timeline">
@@ -43,7 +49,8 @@
            {% endif %}
            {% if intern.relation.schools %}
                 <div class="personal-project-item">
-                    <div class="item item-small">
+                    <div class="item item-small item-link">
+                        <img class="item-img item-img-timeline" src="files/{{ intern.image }}"/>
                         <h3 class="title title-item title-timeline">{{ intern.firstname }} school</h3>
                     </div>
                     <div class="timeline personal-timeline">

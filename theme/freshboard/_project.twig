@@ -3,47 +3,75 @@
 {{ dump(currentDuration)}} #}
 
 <div class="item-open item-open-project-{{ project.id }} js-info-block" data-target="project-item-{{ project.id }}">
+    <!-- <a class="js-close close" data-target=".item-open-project-{{ project.id }}"><i class="icon icon-cancel"></i></a> -->
     <div class="col-md-6 col-md-offset-3">
-        <a class="js-close close" data-target=".item-open-project-{{ project.id }}"><i class="icon icon-cancel"></i></a>
+
 
             <h3 class="title title-item">{{ project.name }}</h3>
             <p class="subtitle subtitle-item">{{ project.category }}</p>
             <div class="row item-content">
 
-                <div class="col-md-12">
+                <div class="project-heads">
                     {% if project.relation.interns %}
                         {% for intern in project.related('interns') %}
 
-                            <div class="item item-small col-md-2">
+                            <div class="item item-small project-head">
                                 <img class="item-img item-link" data-target=".personal-item-{{ intern.id }}" src="files/{{ intern.image }}"/>
-                                <!-- <h3 class="subtitle subtitle-small">{{ intern.function }}</h3> -->
+                                <!-- {% if intern.relation.fases %}
+                                    {% for fase in intern.related('fases') if project.id in fase.relation.projects %}
+                                        <h3 class="subtitle subtitle-small">{{ fase.name }}</h3>
+                                    {% endfor %}
+                                {% endif %} -->
+                                <h3 class="subtitle subtitle-small">{{ intern.function }}</h3>
                             </div>
 
                         {% endfor %}
                     {% endif %}
                 </div>
 
-                <div class="col-md-12">
-                    <h4>opdrachtomschrijving</h4>
-                    <p class="item-description">
-                        {{ project.description }}
-                    </p>
-                </div>
-                <div class="col-md-12 timeline-view">
-                    <div class="timeline">
-                        <div class="timeline-filled" data-value="{{ project.startdate|ProjectProgressCalculator(project.enddate) }}"></div>
+                <div class="item-content">
+                <p class="subtitle subtitle-item">planning</p>
+                <div class="timeline-view">
 
+                    <div class="timeline">
+                        <div class="timeline-filled timeline-filled-project" data-value="{{ project.startdate|ProjectProgressCalculator(project.enddate) }}"></div>
+                        <p class='project-details project-date project-date-start'> {{ project.startdate|date("d/m/Y") }}</p>
+                        <p class='project-details project-date project-date-end'> {{ project.enddate|date("d/m/Y") }}</p>
                     </div>
                     <ul class="project-timeline">
                     {% if project.relation.fases %}
                         {% for fase in project.related('fases') %}
 
-                            <li><div class="timeline-filled timeline-filled-fase" data-value="{{ fase.startdate|TimelineDurationCalculator(fase.enddate, project.startdate, project.enddate) }}" data-offset="{{ fase.startdate|TimelinePositionCalculator(fase.enddate, project.startdate, project.enddate) }}"></div></li>
+                            <li>
+                                <!-- <p class='project-details'> {{ fase.name }}</p> -->
+                                <div class="timeline-filled timeline-filled-fase" data-target=".fase-{{ fase.id }}" data-value="{{ fase.startdate|TimelineDurationCalculator(fase.enddate, project.startdate, project.enddate) }}" data-offset="{{ fase.startdate|TimelinePositionCalculator(fase.enddate, project.startdate, project.enddate) }}">
+                                    <p class="js-details details details-fase fase-{{ fase.id }}">{{ fase.startdate|date("d/m/Y") }} </br><span>{{ fase.name }}<span></p>
+                                </div>
+                            </li>
+
                         {% endfor %}
                     {% endif %}
                     </ul>
 
                 </div>
+            </div>
+
+                <div class="col-md-12 item-content">
+                    <h4>opdrachtomschrijving</h4>
+                    <p class="item-description">
+                        {{ project.description }}
+
+                            <a href="{{ project.external_link }}" class="external_link" target="_blank">bekijk {{ project.name }}</a>
+                    </p>
+                </div>
+                <!-- {% if project.external_link %}
+                <div class="col-md-12 item-content">
+                    <h4>reflectie</h4>
+                    <p class="item-description">
+                        {{ project.reflection }}
+                    </p>
+                </div>
+                {% endif %} -->
             </div>
 
     </div>

@@ -55,6 +55,9 @@ interns:
             type: image
         function:
             type: text
+        description:
+            type: textarea
+            prefix: "<p>iets over jezelf.</p>"
     relations:
         teams:
             multiple: false
@@ -94,6 +97,11 @@ projects:
                     changeYear: true
         image:
             type: image
+        external_link:
+            type: text
+        reflection:
+            type: textarea
+            prefix: "<p>Hoe is het project verlopen</p>"
     relations:
         interns:
             multiple: true

@@ -8,13 +8,15 @@ body {
     position: relative;
     svg {
         width: 100%;
+        overflow: visible;
     }
 }
 
 .dashboard-section {
         width: 100%;
         min-height: 100vh;
-        padding: 3em 0;
+        padding: 3em 0 20vh 0;
+        position: relative;
         overflow: hidden;
         // background-color: $brand-tertiary;
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3f3b49+0,706982+58,3f3b49+100 */
@@ -24,8 +26,10 @@ body {
         // background-position: top;
         // background-repeat: no-repeat;
         // background-image: url("../../images/background.png");
-        &-personal {
+    }
+
+.section-projects {
+            text-align: center;
             // background-image: url("../../images/background.jpg");
             // background-color: $brand-primary;
         }
-}

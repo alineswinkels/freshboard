@@ -1,5 +1,32 @@
+.legenda {
+    position: relative;
+
+    span {
+        margin-left: 1.5em;
+        &:before {
+            content: '';
+            width: 1em;
+            height: 1em;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    &-project:before {
+        background-color: rgba(0,0,0,0.2);
+    }
+    &-fase:before {
+        background-color: $brand-primary;
+    }
+
+
+}
+
 .timeline-view {
-    margin-top: 6rem;
+    margin-top: 3rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-top: 1px solid rgba(0,0,0,0.05);
 
     // .icon {
     //     position:absolute;
@@ -23,11 +50,16 @@
 
 }
 
+.item-content {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
 .timeline {
-    height: 1em;
+    height: 1.5em;
     background-color: $brand-primary-rgba;
     position: relative;
-    border-radius: 15px;
+    // border-radius: 15px;
 
     li{
         list-style: none;
@@ -35,8 +67,12 @@
     }
 }
 
+.personal-timeline {
+    padding-bottom: 3rem;
+}
+
 .timeline-filled {
-    border-radius: 10px;
+    // border-radius: 10px;
     max-width: 100% !important;
     height: 1em;
     width: 0;
@@ -46,6 +82,7 @@
     background-color: $brand-primary;
     transition: 0.4s;
     border: 1px solid $transparent;
+    cursor: pointer;
 
     &:hover {
         transition: 0.05s;
@@ -72,7 +109,7 @@
             // }
         }
         &-school {
-            background-color: blue;
+            background-color: rgba(0,0,0,0.75) !important;
             // &:hover {
             //     background-color: $brand-primary-transparent;
             // }
@@ -81,7 +118,7 @@
 }
 
 .personal-projects-wrap {
-    overflow: hidden;
+    overflow: visible;
     position: relative;
 }
 
@@ -90,12 +127,13 @@
     // margin-top: 2em;
     position: relative;
     padding: 2em 0;
+    margin-top: 4rem;
 
     .personal-timeline {
-            height: 1em;
-            margin: 1em 0;
+            height: 1.5em;
+            margin: 0 0 1em 0;
             background: transparent;
-            cursor: pointer;
+            padding-bottom: 1em;
 
         li {
             height:0;
@@ -113,6 +151,21 @@
     width: 100%;
     float: left;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    &:nth-child(odd) {
+        background-color: rgba(0,0,0,0.03);
+    }
+    .timeline-filled {
+        height: 1em;
+        background-color: rgba(0,0,0,0.2);
+        &-fase {
+            background-color: $brand-primary !important;
+        }
+    }
+    .item-link {
+        margin: 0;
+        display: inline-block;
+        position: relative;
+    }
     &:last-child {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
@@ -120,22 +173,38 @@
 
 .title-timeline {
     margin-top: 1em !important;
+    margin-left: 1em;
     text-align: left !important;
 }
 
 .project-timeline {
-    ul {
         margin: 0;
-        padding: 0;
+        padding: 0 0 1em 0;
         position: relative;
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+
         li {
             height: 1em;
             list-style-type: none;
             position: relative;
             width: 100%;
-            overflow: hidden;
+            // overflow: hidden;
+            margin-top: 0.5em;
+
+            .timeline-filled {
+                top: 0;
+            }
         }
-    }
+}
+
+.item-img-timeline {
+    width: 50px !important;
+    margin:0;
+    position: absolute;
+    left: -75px;
+    top: 1em;
 }
 
 .week {
@@ -147,7 +216,7 @@
     }
     &:after {
         content: '';
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.05);
         position: absolute;
         top: 0;
         left: 0;
@@ -157,19 +226,16 @@
 }
 
 .now {
-    width: 1px;
-    background-color:black;
-    height: 100%;
+    border-right: 1px solid $brand-primary;
+    background: -webkit-linear-gradient(left, rgba(255,0,0,0), rgba(55,172,101,0.05)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(255,0,0,0), rgba(55,172,101,0.05)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(255,0,0,0), rgba(55,172,101,0.05)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(255,0,0,0), rgba(55,172,101,0.05)); /* Standard syntax (must be last) */
+    opacity: 1;
+    height: 80%;
     position: absolute;
     overflow: visible;
-    top: 0;
-    // &:after {
-    //     content:"vandaag";
-    //     position: absolute;
-    //     top: 0;
-    //     font-family: $font-family-primary;
-    //     left: 0.5em;
-    // }
+    top: 20%;
 }
 
 .details {
@@ -179,7 +245,7 @@
     bottom:1em;
     padding: 0.5em 1em;
     border: 1px solid rgba(0,0,0,0.1);
-    line-height: calc(1em - 2px);
+    line-height: 1.5em;
     span {
         font-family: $font-family-secondary;
         font-style: italic;
@@ -191,7 +257,7 @@
         top:1.5em;
         padding: 0.5em 1em;
         border: 1px solid rgba(0,0,0,0.1);
-        line-height: calc(1em - 2px);
+
         &:after {
             content: '';
             position: absolute;
@@ -237,11 +303,34 @@
         }
     }
     &-school {
-        background-color: red;
+        background-color: $brand-quaternary;
         color: white;
         &:after {
-            background-color: red;
+            background-color: $brand-quaternary;
         }
     }
 
+}
+
+.project-date {
+    position: absolute;
+    font-size: 0.8em;
+    top: -3em;
+    margin-left: 1em;
+    &:after {
+        content: '';
+        width:1px;
+        height: 2em;
+        background-color: rgba(0,0,0,0.1);
+        position: absolute;
+        left: -1em;
+        top: 0;
+    }
+    &-end {
+        right: 1em;
+        &:after {
+            left: auto;
+            right: -1em;
+        }
+    }
 }

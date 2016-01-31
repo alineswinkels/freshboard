@@ -74,13 +74,16 @@ class Extension extends BaseExtension
         $internStart = strtotime($startdateTeam);
         $internEnd = strtotime($enddateTeam);
 
+        // $today = new \DateTime('2015-08-31');
+        // $today = new \DateTime('2015-10-31');
+        // $today = new \DateTime('2015-12-15');
         $today = new \DateTime('NOW');
         $now = strtotime($today->format('Y-m-d')) - $internStart;
 
         $internDuration = $internEnd - $internStart;
 
         $internCompletion = 100 / $internDuration * $now;
-        $internCompletion = number_format($internCompletion, 2 , '.' , '');
+        $internCompletion = str_replace(',', '.', $internCompletion);
 
         return new \Twig_Markup($internCompletion, 'UTF-8');
     }
@@ -129,6 +132,9 @@ class Extension extends BaseExtension
         $projectStart = strtotime($startdateProject);
         $projectEnd = strtotime($enddateProject);
 
+        // $today = new \DateTime('2015-08-31');
+        // $today = new \DateTime('2015-10-31');
+        // $today = new \DateTime('2015-12-15');
         $today = new \DateTime('NOW');
         $now = strtotime($today->format('Y-m-d')) - $projectStart;
 

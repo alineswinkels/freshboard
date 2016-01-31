@@ -13,8 +13,13 @@
     text-align: center;
     &-item {
         margin-top: 1em;
+        cursor: pointer;
+        .section-projects & {
+            font-size: 1em;
+        }
         .item-open & {
             margin-top: 0;
+            font-size: 1.5em;
             // text-align: left;
         }
         .item-small & {
@@ -28,6 +33,7 @@
     font-family: 'Georgia';
     font-style: italic;
     text-align: center;
+    margin: 0;
         .item-small & {
             font-size: 1em;
             text-align: center;

@@ -7,6 +7,7 @@
     margin: 0;
     background-color: $brand-secondary;
     position: absolute;
+    text-align: left;
 
     .subtitle-item {
         font-family: 'Georgia';
@@ -26,19 +27,31 @@
         top:0;
         position: fixed;
     }
-    .item-content {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+
+}
+
+.project-heads{
+    text-align: center;
+    .project-head {
+        width: 20%;
+        display: inline-block;
     }
 }
 
-.personal-link {
-    padding: 0.5em 1em;
-    border: 1px solid $link-color;
-    &:hover {
-        background-color: #8e9095;
-        color: #0f2d37;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.external_link {
+    display: block;
+    color: black;
+    margin-top: 2em;
+    font-weight: bold;
 }
+//
+// .personal-link {
+//     padding: 0.5em 1em;
+//     border: 1px solid $link-color;
+//     &:hover {
+//         background-color: #8e9095;
+//         color: #0f2d37;
+//         text-decoration: none;
+//         cursor: pointer;
+//     }
+// }
